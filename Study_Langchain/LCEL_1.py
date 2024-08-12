@@ -9,6 +9,11 @@ Output của runables trước là input của runnable tiếp theo.
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv('GEMINI_API')
 
 # 1. The pipe operator: |
 llm = ChatGoogleGenerativeAI(
@@ -17,7 +22,7 @@ llm = ChatGoogleGenerativeAI(
     max_tokens=None,
     timeout=None,
     max_retries=2,
-    api_key='AIzaSyAea0CgXrjzf-dwkmC-enWbVtIwrFhG3OI'
+    api_key= api_key
 )
 
 prompt = ChatPromptTemplate.from_template("tell me a joke about {topic}")
