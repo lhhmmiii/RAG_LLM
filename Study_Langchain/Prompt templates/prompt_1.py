@@ -3,6 +3,7 @@
 - Đầu tiên là tạo example prompt cho 1 example trước
 - Tiếp theo là tạo bộ examples tuân theo các biến có trong prompt
 - Tiếp theo sử dụng hàm FewShotPromptTemplate, trong đó phải suffix là phần sẽ được ghi ra và input_variables thì để trong []
+- Đối với FewShotChatPromptTemplate thì sẽ tìm hiểu sau(khi thực hành làm project)
 '''
 
 # import thư viện
