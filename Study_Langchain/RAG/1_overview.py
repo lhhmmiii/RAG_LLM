@@ -28,7 +28,7 @@ docs = loader.load()
 # Split
 # Summarize
 '''
-Ta có thể thấy ở phần 1(Overview), ta tìm kiếm thông tin phù hợp trên toàn bộ document. Nếu như ta tìm kiếm thông tin như vậy thì nó chỉ hoạt động tốt với số lượng document nhỏ.
+Tta tìm kiếm thông tin phù hợp trên toàn bộ document. Nếu như ta tìm kiếm thông tin như vậy thì nó chỉ hoạt động tốt với số lượng document nhỏ.
 Nếu document lớn thì nó sẽ khiến model gặp khó khăn và tốn thời gian. 
 Phần overlap chính là để giảm thiểu khả năng mà ta tách thành các chunk không chứa thông tin liên quan tới câu hỏi.
 Cách giải quyết: Chia document thành nhiều Chunk để embedding và lưu vào vectostore.
@@ -40,6 +40,9 @@ splits = text_splitter.split_documents(docs)
 embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=google_genai_api_key)
 vectostore = Chroma.from_documents(splits, embeddings)
 retriever = vectostore.as_retriever()
+# relevant_info = retriever.get_relevant_documents('How many scores did Ronaldo make in UEFA Champions League?', search_kwargs={"k": 1})
+# print(relevant_info)
+
 
 # Prompt
 template = """
