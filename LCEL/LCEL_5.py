@@ -61,4 +61,29 @@ chain = ( # Như đã nói ở LCEL 3 thì khi ta dùng itemgetter khi muốn g�
     | StrOutputParser()
 )
 
-print(chain.invoke({"type": 1, "name": 1}))
+# print(chain.invoke({"type": 1, "name": 1}))
+
+## ---------------- Example 2 ------------------------ ##
+
+def length_function(text):
+    return len(text)
+
+def length_fucntion_square(text):
+    return len(text)**2
+
+prompt_template = "What is {a} divide by {b}"
+prompt = PromptTemplate.from_template(prompt_template)
+
+chain2 = (
+    (
+        {
+            "a" : itemgetter("number1") | RunnableLambda(length_function),
+            "b" : itemgetter("number2") | RunnableLambda(length_fucntion_square)
+        }
+    )
+    | prompt 
+    | llm
+    | StrOutputParser()
+)
+
+print(chain2.invoke({"number1" : "LHH", "number2" : "H"}))
